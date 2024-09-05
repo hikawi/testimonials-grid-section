@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         "primary-violet": "hsl(263, 55%, 52%)", // Moderate violet
+        "primary-light-violet": "#A775F1", // Light violet
         "primary-gray-blue": "hsl(217, 19%, 35%)", // Very dark grayish blue
         "primary-black-blue": "hsl(219, 29%, 14%)", // Very dark blackish blue
         "neutral-gray": "hsl(0, 0%, 81%)", // Light gray

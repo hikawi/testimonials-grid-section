@@ -37,7 +37,7 @@ function randomizeState() {
     <KiraCard :pos="state.kira" />
   </div>
   <button
-    class="bg-primary-black-blue font-semibold text-white fixed bottom-4 left-1/2 -translate-x-1/2 py-2 px-4 rounded-lg z-20"
+    class="bg-primary-gray-blue font-semibold text-white fixed bottom-4 left-1/2 -translate-x-1/2 py-2 px-4 rounded-lg z-20 duration-150 motion-reduce:duration-0 hover:px-8 hover:bg-primary-black-blue"
     @click="randomizeState"
   >
     Randomize

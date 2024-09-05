@@ -9,7 +9,7 @@ const props = defineProps<{
 let classes: string;
 switch (props.theme) {
   case 0:
-    classes = "ring-2 ring-primary-violet";
+    classes = "ring-2 ring-primary-light-violet";
     break;
   case 2:
     classes = "ring-2 ring-primary-violet";
