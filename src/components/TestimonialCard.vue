@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUpdated, ref, useTemplateRef } from "vue";
-import UserProfile from "./UserProfile.vue";
+import { computed, onMounted, onUpdated, ref } from "vue";
 import PatternQuotation from "./icons/PatternQuotation.vue";
+import ScrollableTag from "./ScrollableTag.vue";
+import UserProfile from "./UserProfile.vue";
 
 const props = defineProps<{
   name: string;
@@ -22,7 +23,7 @@ const cardTheme = cardThemes[props.theme];
 const cardPositions = [
   "lg:col-start-1 lg:row-start-1 col-span-2",
   "lg:col-start-3 lg:row-start-1",
-  "lg:col-start-4 row-span-2 max-h-full",
+  "lg:col-start-4 row-span-2 xl:max-h-full",
   "lg:col-start-1 lg:row-start-2",
   "lg:col-start-2 col-span-2 lg:row-start-2",
 ];
@@ -31,28 +32,31 @@ const normalisedName = props.name.toLowerCase().replace(" ", "-");
 
 let scrollable = ref(false);
 
-onUpdated(() => {
-  scrollable.value = isScrollable();
+function checkScrollable() {
+  const el = document.getElementById(`content-${normalisedName}`);
+  scrollable.value = el ? el.scrollHeight > el.clientHeight : false;
+}
+
+onMounted(() => {
+  checkScrollable();
+  window.addEventListener("resize", checkScrollable);
+  return () => window.removeEventListener("resize", checkScrollable);
 });
 
-function isScrollable() {
-  const el = document.getElementById(`content-${normalisedName}`);
-  console.log(normalisedName, el?.scrollHeight, el?.offsetHeight);
-  return el ? el.scrollHeight > el.clientHeight : false;
-}
+onUpdated(() => {
+  checkScrollable();
+});
 </script>
 
 <template>
   <div
-    class="flex flex-col p-8 gap-4 rounded-lg relative shadow-lg max-h-[360px] hover:duration-100 hover:scale-105 active:opacity-70"
+    class="flex flex-col p-8 gap-4 rounded-lg relative shadow-lg h-full xl:max-h-[360px] hover:duration-100 hover:scale-[1.01] active:opacity-70"
     :class="cardTheme + ' ' + cardPosition"
   >
-    <div class="absolute top-0 right-0 z-20 translate-x-2 -translate-y-2 bg-sky-300 text-black py-1 px-3" v-show="scrollable">
-      Scrollable
-    </div>
+    <ScrollableTag :show="scrollable" />
     <UserProfile :name :img :title :theme />
     <PatternQuotation v-show="props.theme === 0" class="top-0 right-[15%] absolute" />
-    <h3 class="text-2xl font-semibold z-10">
+    <h3 class="text-2xl font-semibold z-10 leading-tight">
       <slot name="headline"></slot>
     </h3>
     <p class="overflow-y-scroll opacity-70" :id="'content-' + normalisedName">
