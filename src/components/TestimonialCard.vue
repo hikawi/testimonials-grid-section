@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import UserProfile from "./UserProfile.vue";
 import PatternQuotation from "./icons/PatternQuotation.vue";
 
@@ -21,19 +22,18 @@ const cardTheme = cardThemes[props.theme];
 const cardPositions = [
   "lg:col-start-1 lg:row-start-1 col-span-2",
   "lg:col-start-3 lg:row-start-1",
-  "lg:col-start-4 row-span-2",
+  "lg:col-start-4 row-span-2 max-h-full",
   "lg:col-start-1 lg:row-start-2",
   "lg:col-start-2 col-span-2 lg:row-start-2",
 ];
-const cardPosition = cardPositions[props.pos];
-const classes = cardTheme + " " + cardPosition;
+const cardPosition = computed(() => cardPositions[props.pos]);
 </script>
 
 <template>
-  <div class="flex flex-col p-8 gap-4 rounded-lg relative" :class="classes">
-    <UserProfile :name :img :title />
+  <div class="flex flex-col p-8 gap-4 rounded-lg relative shadow-lg max-h-[360px]" :class="cardTheme + ' ' + cardPosition">
+    <UserProfile :name :img :title :theme />
     <PatternQuotation v-show="props.theme === 0" class="top-0 right-[15%] absolute" />
-    <h3 class="text-xl font-semibold z-10">
+    <h3 class="text-2xl font-semibold z-10">
       <slot name="headline"></slot>
     </h3>
     <p class="overflow-y-scroll opacity-70">

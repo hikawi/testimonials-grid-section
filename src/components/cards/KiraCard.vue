@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import TestimonialCard from "../TestimonialCard.vue";
+
+defineProps<{
+  pos: number;
+}>();
 </script>
 
 <template>
-  <TestimonialCard name="Kira Whittle" title="Verified Graduate" img="./src/assets/image-kira.jpg" :theme="3" :pos="2">
+  <TestimonialCard name="Kira Whittle" title="Verified Graduate" img="/image-kira.jpg" :theme="3" :pos>
     <template v-slot:headline>Such a life-changing experience. Highly recommended!</template>
     <template v-slot:content>
       “ Before joining the bootcamp, I've never written a line of code. I needed some structure from professionals who can help me learn

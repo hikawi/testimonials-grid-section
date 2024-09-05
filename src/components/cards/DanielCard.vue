@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import TestimonialCard from "../TestimonialCard.vue";
+
+defineProps<{
+  pos: number;
+}>();
 </script>
 
 <template>
-  <TestimonialCard name="Daniel Clifford" title="Verified Graduate" img="./src/assets/image-daniel.jpg" :theme="0" :pos="0">
+  <TestimonialCard name="Daniel Clifford" title="Verified Graduate" img="/image-daniel.jpg" :theme="0" :pos>
     <template v-slot:headline>
       I received a job offer mid-course, and the subjects I learned were current, if not more so, in the company I joined. I honestly feel I
       got every penny's worth.

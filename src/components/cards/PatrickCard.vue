@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import TestimonialCard from "../TestimonialCard.vue";
+
+defineProps<{
+  pos: number;
+}>();
 </script>
 
 <template>
-  <TestimonialCard name="Patrick Abrams" title="Verified Graduate" img="./src/assets/image-patrick.jpg" :theme="2" :pos="4">
+  <TestimonialCard name="Patrick Abrams" title="Verified Graduate" img="/image-patrick.jpg" :theme="2" :pos>
     <template v-slot:headline>
       Awesome teaching support from TAs who did the bootcamp themselves. Getting guidance from them and learning from their experiences was
       easy.
