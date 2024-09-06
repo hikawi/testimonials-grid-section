@@ -21,11 +21,11 @@ const cardThemes = [
 const cardTheme = cardThemes[props.theme];
 
 const cardPositions = [
-  "lg:col-start-1 lg:row-start-1 col-span-2",
-  "lg:col-start-3 lg:row-start-1",
-  "lg:col-start-4 row-span-2 xl:max-h-full",
-  "lg:col-start-1 lg:row-start-2",
-  "lg:col-start-2 col-span-2 lg:row-start-2",
+  "order-1 lg:col-start-1 lg:row-start-1 col-span-2",
+  "order-2 lg:col-start-3 lg:row-start-1",
+  "order-3 lg:col-start-4 row-span-2 xl:max-h-full",
+  "order-4 lg:col-start-1 lg:row-start-2",
+  "order-5 lg:col-start-2 col-span-2 lg:row-start-2",
 ];
 const cardPosition = computed(() => cardPositions[props.pos]);
 const normalisedName = props.name.toLowerCase().replace(" ", "-");
